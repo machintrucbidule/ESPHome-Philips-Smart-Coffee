@@ -7,7 +7,7 @@
 
 #define MESSAGE_REPETITIONS 24
 #define POWER_TRIP_RETRY_DELAY 100
-#define MAX_POWER_TRIP_COUNT 10
+#define MAX_POWER_TRIP_COUNT 30
 
 namespace esphome
 {
