@@ -88,7 +88,7 @@ namespace esphome
 #ifdef USE_SWITCH
                 ESP_LOGE(TAG, "Sent turn off, no message");
                 // Update power switches
-                for (philips_power_switch::Power *power_switch : power_switches_){
+                for (philips_power_switch::Power *power_switch : power_switches_)
                     power_switch->update_state(false);
 #endif
 
