@@ -87,7 +87,6 @@ namespace esphome
             if (millis() - last_message_from_display_time_ > POWER_STATE_TIMEOUT)
             {
 #ifdef USE_SWITCH
-                ESP_LOGD(TAG, "Sent turn off, no message");
                 // Update power switches
                 for (philips_power_switch::Power *power_switch : power_switches_)
                     power_switch->update_state(false);
