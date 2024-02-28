@@ -35,6 +35,7 @@ namespace esphome
                     if (button->is_long_pressing())
                     {
                         long_pressing = true;
+                        ESP_LOGD(TAG, "Long pressing detected");
                         break;
                     }
                 }
