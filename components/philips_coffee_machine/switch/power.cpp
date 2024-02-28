@@ -26,9 +26,9 @@ namespace esphome
                     }
 
                     // Perform power trip (invert state twice)
-                    power_pin_->digital_write(false); // Turn off
+                    power_pin_->digital_write(!(*initial_state_));
                     delay(power_trip_delay_);
-                    power_pin_->digital_write(true); // Turn on
+                    power_pin_->digital_write(*initial_state_);
 
                     last_power_trip_ = millis();
                     power_trip_count_++;
