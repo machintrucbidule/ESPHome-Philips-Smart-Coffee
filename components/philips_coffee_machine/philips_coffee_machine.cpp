@@ -27,6 +27,7 @@ namespace esphome
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
                 // Only process messages starting with start bytes
                 if (size > 1 && buffer[0] == message_header[0] && buffer[1] == message_header[1])
+                {
                     display_uart_.read_array(buffer, size);
     
                     // Check if a action button is currently performing a long press
