@@ -6,7 +6,7 @@
 #include "../commands.h"
 
 #define MESSAGE_REPETITIONS 5
-#define POWER_TRIP_RETRY_DELAY 100
+#define POWER_TRIP_RETRY_DELAY 500
 #define MAX_POWER_TRIP_COUNT 5
 
 namespace esphome
