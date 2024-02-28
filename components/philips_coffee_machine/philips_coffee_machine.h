@@ -16,7 +16,7 @@
 #endif
 #endif
 
-#define POWER_STATE_TIMEOUT 750
+#define POWER_STATE_TIMEOUT 1000
 
 namespace esphome
 {
