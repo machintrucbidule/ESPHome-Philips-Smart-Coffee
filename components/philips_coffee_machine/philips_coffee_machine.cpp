@@ -25,26 +25,28 @@ namespace esphome
             if (display_uart_.available())
             {
                 uint8_t size = std::min(display_uart_.available(), BUFFER_SIZE);
-                display_uart_.read_array(buffer, size);
-
-                // Check if a action button is currently performing a long press
-                bool long_pressing = false;
-#ifdef USE_BUTTON
-                for (philips_action_button::ActionButton *button : action_buttons_)
-                {
-                    if (button->is_long_pressing())
+                if(size > 1){
+                    display_uart_.read_array(buffer, size);
+    
+                    // Check if a action button is currently performing a long press
+                    bool long_pressing = false;
+    #ifdef USE_BUTTON
+                    for (philips_action_button::ActionButton *button : action_buttons_)
                     {
-                        long_pressing = true;
-                        ESP_LOGW(TAG, "Long pressing detected");
-                        break;
+                        if (button->is_long_pressing())
+                        {
+                            long_pressing = true;
+                            ESP_LOGW(TAG, "Long pressing detected");
+                            break;
+                        }
                     }
+    #endif
+    
+                    // Drop messages if button long-press is currently injecting messages
+                    if (!long_pressing)
+                        mainboard_uart_.write_array(buffer, size);
+                    last_message_from_display_time_ = millis();
                 }
-#endif
-
-                // Drop messages if button long-press is currently injecting messages
-                if (!long_pressing)
-                    mainboard_uart_.write_array(buffer, size);
-                last_message_from_display_time_ = millis();
             }
 
             // Read until start index
